@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shopee Links</title>
+  <link rel="stylesheet" href="Css/reset.css" />
+  <link rel="stylesheet" href="Css/home.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body>
+  <!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">ShopeeLinks</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Trang chủ</a>
+        </li>
+
+        <!-- DROPDOWN -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            Danh mục
+          </a>
+          <ul class="dropdown-menu" id="categoryMenu">
+            <li><span class="dropdown-item-text text-muted">Đang tải...</span></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Liên hệ</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero fade-in">
+  <div class="container">
+    <h1 class="fw-bold mb-3">Tổng hợp link Shopee uy tín</h1>
+    <p class="text-muted mb-4">
+      Danh sách sản phẩm được phân loại rõ ràng, dễ tìm kiếm
+    </p>
+    <a href="#categories" class="btn btn-dark">Xem danh mục</a>
+  </div>
+</section>
+
+<!-- ===== CATEGORY LIST ===== -->
+<section id="categories" class="container my-5 fade-in">
+  <h3 class="mb-4">Danh mục nổi bật</h3>
+  <div class="list-group" id="categoryList"></div>
+</section>
+
+
+
+
+
+  <script src="Js/home.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+</html>

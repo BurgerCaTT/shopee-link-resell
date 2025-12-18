@@ -1,0 +1,16 @@
+body {
+    background: #f8f9fa;
+}
+.hero {
+    padding: 80px 20px;
+    text-align: center;
+}
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all .6s ease;
+}
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
