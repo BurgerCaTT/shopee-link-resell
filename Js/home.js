@@ -1,7 +1,7 @@
 // ======================
 // CONFIG
 // ======================
-const API_BASE = "https://localhost:7148/api"; // backend của bạn
+const API_BASE = "https://shopee-link-resell-be.onrender.com/swagger/index.html"; 
 
 // ======================
 // LOAD CATEGORIES (MENU)
