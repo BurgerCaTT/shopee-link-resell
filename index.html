@@ -3,75 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <title>Shopee Links</title>
-  <link rel="stylesheet" href="Css/reset.css" />
-  <link rel="stylesheet" href="Css/home.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+   <link rel="stylesheet" href="Css/reset.css" />
+  <link rel="stylesheet" href="Css/home.css" />
 </head>
 <body>
-  <!-- ===== NAVBAR ===== -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="#">ShopeeLinks</a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-dark" href="#">ShopeeLinks</a>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#mainMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav ms-auto">
+
         <li class="nav-item">
-          <a class="nav-link active" href="#">Trang chủ</a>
+          <a class="nav-link active menu-link" href="#">Trang chủ</a>
         </li>
 
-        <!-- DROPDOWN -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle menu-link" href="#" data-bs-toggle="dropdown">
             Danh mục
           </a>
           <ul class="dropdown-menu" id="categoryMenu">
-            <li><span class="dropdown-item-text text-muted">Đang tải...</span></li>
+            <li class="dropdown-item text-muted">Đang tải...</li>
           </ul>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">Liên hệ</a>
+          <a class="nav-link menu-link" href="#">Liên hệ</a>
         </li>
+
       </ul>
     </div>
   </div>
 </nav>
 
 <!-- ===== HERO ===== -->
-<section class="hero fade-in">
-  <div class="container">
-    <h1 class="fw-bold mb-3">Tổng hợp link Shopee uy tín</h1>
-    <p class="text-muted mb-4">
-      Danh sách sản phẩm được phân loại rõ ràng, dễ tìm kiếm
+<section class="hero-section">
+  <div class="container text-center">
+    <h1 class="fw-bold">Tổng hợp link Shopee uy tín</h1>
+    <p class="text-muted mt-2">
+      Click để chuyển tiếp đến sản phẩm Shopee chính hãng
     </p>
-    <a href="#categories" class="btn btn-dark">Xem danh mục</a>
   </div>
 </section>
 
-<!-- ===== CATEGORY LIST ===== -->
-<section id="categories" class="container my-5 fade-in">
-  <h3 class="mb-4">Danh mục nổi bật</h3>
-  <div class="list-group" id="categoryList">
-    <a href="https://s.shopee.vn/5fhojwU7OP" target="_blank"  rel="nofollow noopener" class="list-group-item list-group-item-action"> TEST 1</a>
+<!-- ===== LINK LIST ===== -->
+<section class="container my-5">
+  <div class="row align-items-center mb-4">
 
-    <a href="https://s.shopee.vn/5fhojwU7OP" target="_blank"  rel="nofollow noopener" class="list-group-item list-group-item-action"> TEST 2</a>
+    <div class="col-md-6">
+      <h4 class="fw-bold mb-2 mb-md-0">Danh sách sản phẩm</h4>
+    </div>
 
-    <a href="https://s.shopee.vn/5fhojwU7OP" target="_blank"  rel="nofollow noopener" class="list-group-item list-group-item-action"> TEST 3</a>
+    <div class="col-md-6 col-lg-4 ms-md-auto">
+      <input
+        type="text"
+        id="searchInput"
+        class="form-control search-input"
+        placeholder="Tìm sản phẩm..."
+      />
+    </div>
+  </div>
 
+  
+  <!-- ===== DIVIDER ===== -->
+  <div class="section-divider"></div>
+
+
+  <!-- ===== FILTER BAR ===== -->
+  <div class="row mb-4 filter-bar">
+    <div class="col-md-4 col-12 mb-2 mb-md-0">
+      <button class="filter-btn active" data-sort="newest">
+        Mới nhất
+      </button>
+    </div>
+
+    <div class="col-md-4 col-12 mb-2 mb-md-0">
+      <button class="filter-btn" data-sort="best">
+        Bán chạy
+      </button>
+    </div>
+
+    <div class="col-md-4 col-12">
+      <button class="filter-btn" data-sort="price">
+        Giá
+        <span class="price-icon">⇅</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="row g-4" id="linkList">
+    <!-- Link item render từ JS -->
   </div>
 </section>
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-
-
-
-  <script src="Js/home.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
+<!-- Custom JS -->
+<script src="Js/home.js"></script>
 </body>
 </html>

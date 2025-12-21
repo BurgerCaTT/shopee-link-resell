@@ -1,42 +1,130 @@
-const API_BASE =
-  location.hostname === "localhost"
-    ? "http://localhost:5000/api"
-    : "https://shopeelinks-api.onrender.com/api";
+// ======================
+// CONFIG
+// ======================
+const API_BASE = "https://localhost:7148/api"; // backend của bạn
+
+// ======================
+// LOAD CATEGORIES (MENU)
+// ======================
+async function loadCategories() {
+  try {
+    const res = await fetch(`${API_BASE}/categories`);
+    const data = await res.json();
+
+    const menu = document.getElementById("categoryMenu");
+    menu.innerHTML = "";
+
+    data.forEach(c => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <a class="dropdown-item" href="#" data-slug="${c.slug}">
+          ${c.name}
+        </a>`;
+      menu.appendChild(li);
+    });
+  } catch (err) {
+    console.error("Error loading categories:", err);
+  }
+}
+loadCategories();
+
+// ===========================================
+// HIỂN THỊ SẢN PHẨM
+const linkList = document.getElementById("linkList");
+let allLinks = []; // lưu toàn bộ link để sort/filter
+
+function formatPrice(price) {
+  return "₫" + price.toLocaleString("vi-VN");
+}
+
+function renderLinks(links) {
+  linkList.innerHTML = "";
+
+  links.forEach(item => {
+    let badgeHTML = "";
+
+    if (item.badge === "favorite") {
+      badgeHTML = `<span class="link-badge badge-favorite">Yêu thích</span>`;
+    } 
+    else if (item.badge === "mall") {
+      badgeHTML = `<span class="link-badge badge-mall">Mall</span>`;
+    }
+
+    linkList.innerHTML += `
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <a href="${item.shopeeUrl}" target="_blank" class="link-card">
+
+          <div class="link-image">
+            <img src="${item.imageUrl}" alt="${item.title}">
+            ${badgeHTML}
+          </div>
+
+          <div class="link-body">
+            <div class="link-title">${item.title}</div>
+            
+
+            <div class="link-meta">
+              <span class="link-price">${formatPrice(item.price)}</span>
+              <span class="link-sold">Đã bán ${Math.floor(item.sold / 1000)}k+</span>
+            </div>
+          </div>
+
+        </a>
+      </div>
+    `;
+  });
+}
 
 
+// ===========================================
+// FETCH DỮ LIỆU TỪ API
+async function loadLinks() {
+  try {
+    const response = await fetch(`${API_BASE}/links`);
+    if (!response.ok) throw new Error("Network response was not ok");
+    const data = await response.json();
+    allLinks = data; // lưu toàn bộ link
+    renderLinks(allLinks);
+  } catch (error) {
+    console.error("Error fetching links:", error);
+    linkList.innerHTML = `<p>Không thể tải dữ liệu sản phẩm.</p>`;
+  }
+}
 
-// ===== FADE IN EFFECT =====
-window.addEventListener("load", () => {
-  document.querySelectorAll(".fade-in").forEach(el => {
-    setTimeout(() => el.classList.add("show"), 200);
+// ===========================================
+// SORT / FILTER BUTTONS
+const filterButtons = document.querySelectorAll(".filter-btn");
+let priceAsc = true;
+
+filterButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    filterButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const type = btn.dataset.sort;
+
+    if (type === "price") {
+      priceAsc = !priceAsc;
+      btn.querySelector(".price-icon").innerText = priceAsc ? "↑" : "↓";
+      sortLinks("price");
+    } else if (type === "sold") {
+      sortLinks("sold");
+    }
   });
 });
 
-// ===== LOAD CATEGORIES =====
-// fetch(`${API_BASE}/categories`)
-//   .then(res => res.json())
-//   .then(data => {
-//     const menu = document.getElementById("categoryMenu");
-//     const list = document.getElementById("categoryList");
+function sortLinks(type) {
+  let sorted = [...allLinks];
 
-//     menu.innerHTML = "";
-//     list.innerHTML = "";
+  if (type === "price") {
+    sorted.sort((a, b) => priceAsc ? a.price - b.price : b.price - a.price);
+  } else if (type === "sold") {
+    sorted.sort((a, b) => b.sold - a.sold);
+  }
 
-//     data.forEach(c => {
-//       // Dropdown menu
-//       const li = document.createElement("li");
-//       li.innerHTML = `<a class="dropdown-item" href="category.html?slug=${c.slug}">${c.name}</a>`;
-//       menu.appendChild(li);
+  renderLinks(sorted);
+}
 
-//       // List group
-//       const a = document.createElement("a");
-//       a.className = "list-group-item list-group-item-action";
-//       a.href = `category.html?slug=${c.slug}`;
-//       a.innerText = c.name;
-//       list.appendChild(a);
-//     });
-//   })
-//   .catch(() => {
-//     document.getElementById("categoryList").innerHTML =
-//       "<div class='text-danger'>Không tải được danh mục</div>";
-//   });
+// ===========================================
+// Gọi loadLinks khi trang load xong
+document.addEventListener("DOMContentLoaded", loadLinks);
