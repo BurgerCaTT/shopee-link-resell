@@ -80,7 +80,7 @@ function renderLinks(links) {
 // FETCH DỮ LIỆU TỪ API
 async function loadLinks() {
   try {
-    const response = await fetch(`${API_BASE}/links`);
+    const response = await fetch(`${API_BASE}/api/links`);
     if (!response.ok) throw new Error("Network response was not ok");
     const data = await response.json();
     allLinks = data; // lưu toàn bộ link
