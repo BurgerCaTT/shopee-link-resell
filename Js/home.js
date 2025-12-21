@@ -1,7 +1,7 @@
 // ======================
 // CONFIG
 // ======================
-const API_BASE = "https://shopee-link-resell-be.onrender.com/swagger/index.html"; 
+const API_BASE = "https://shopee-link-resell-be.onrender.com"; 
 
 // ======================
 // LOAD CATEGORIES (MENU)
