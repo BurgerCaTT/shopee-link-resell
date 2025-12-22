@@ -29,15 +29,24 @@
           <a class="nav-link active menu-link" href="#">Trang chủ</a>
         </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle menu-link" href="#" data-bs-toggle="dropdown">
-            Danh mục
-          </a>
-          <ul class="dropdown-menu" id="categoryMenu">
-            <li class="dropdown-item text-muted">Đang tải...</li>
-          </ul>
-        </li>
+    <li class="nav-item">
+      <a class="nav-link menu-link" href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCategory">
+        Danh mục
+      </a>
+    </li>
 
+    <!-- offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCategory" aria-labelledby="offcanvasCategoryLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasCategoryLabel">Tất cả danh mục</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="list-group list-group-flush" id="categoryMenu">
+          <li class="list-group-item text-muted">Đang tải...</li>
+        </ul>
+      </div>
+    </div>
         <li class="nav-item">
           <a class="nav-link menu-link" href="#">Liên hệ</a>
         </li>

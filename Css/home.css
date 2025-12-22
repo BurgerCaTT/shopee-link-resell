@@ -240,6 +240,25 @@ section h4 {
 }
 
 
+/* Tùy chỉnh độ rộng bảng nếu muốn (mặc định là 400px) */
+.offcanvas {
+    width: 300px !important;
+}
+
+/* Hiệu ứng hover cho các mục danh mục */
+#categoryMenu .list-group-item {
+    cursor: pointer;
+    transition: background 0.3s;
+    border-left: 3px solid transparent;
+}
+
+#categoryMenu .list-group-item:hover {
+    background-color: #f8f9fa;
+    border-left: 3px solid #ee4d2d; /* Màu cam Shopee */
+    color: #ee4d2d;
+}
+
+
 
 /* ==============================
    RESPONSIVE - TABLET

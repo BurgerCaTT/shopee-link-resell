@@ -128,3 +128,43 @@ function sortLinks(type) {
 // ===========================================
 // Gọi loadLinks khi trang load xong
 document.addEventListener("DOMContentLoaded", loadLinks);
+
+
+
+
+// =============================================
+// off canvas
+async function loadCategories() {
+  const categoryMenu = document.getElementById("categoryMenu");
+  try {
+    const response = await fetch(`${API_BASE}/api/categories`); // Đảm bảo đúng endpoint của bạn
+    const categories = await response.json();
+
+    categoryMenu.innerHTML = ""; // Xóa chữ "Đang tải..."
+
+    categories.forEach(cat => {
+      const li = document.createElement("li");
+      li.className = "list-group-item";
+      li.textContent = cat.name;
+      
+      // Thêm sự kiện lọc nếu bạn muốn
+      li.onclick = () => {
+        console.log("Lọc theo danh mục:", cat.id);
+        // Sau khi bấm xong có thể tự đóng menu:
+        const instance = bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasCategory'));
+        instance.hide();
+        
+        // Gọi hàm lọc sản phẩm của bạn ở đây...
+        filterByCategory(cat.id); 
+      };
+
+      categoryMenu.appendChild(li);
+    });
+  } catch (error) {
+    console.error("Lỗi tải danh mục:", error);
+    categoryMenu.innerHTML = `<li class="list-group-item text-danger">Lỗi tải dữ liệu</li>`;
+  }
+}
+
+// Gọi hàm này khi trang web tải xong
+document.addEventListener("DOMContentLoaded", loadCategories);
