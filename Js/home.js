@@ -134,39 +134,69 @@ document.addEventListener("DOMContentLoaded", loadLinks);
 
 // =============================================
 // off canvas
+// Địa chỉ Backend Singapore của bạn
+
 async function loadCategoriesSidebar() {
     const container = document.getElementById("categoryListBody");
+    if (!container) return;
+
     try {
+        // Gọi đến endpoint bạn vừa gửi: api/categories
         const response = await fetch(`${API_BASE}/api/categories`);
+        
+        if (!response.ok) throw new Error("Không thể tải danh mục");
+        
         const categories = await response.json();
         
-        container.innerHTML = ""; // Xóa dòng "Đang tải"
+        // Xóa dòng "Đang tải..."
+        container.innerHTML = "";
 
+        // 1. Thêm mục "Tất cả" lên đầu bảng
+        const allItem = document.createElement("li");
+        allItem.className = "list-group-item list-group-item-action fw-bold text-primary";
+        allItem.innerHTML = '<i class="bi bi-grid-fill me-2"></i> Tất cả sản phẩm';
+        allItem.onclick = () => {
+            filterByCategory(null); // Hàm lọc tất cả
+            closeSidebar();
+        };
+        container.appendChild(allItem);
+
+        // 2. Đổ danh sách từ API
         categories.forEach(cat => {
             const li = document.createElement("li");
-            li.className = "list-group-item";
-            li.textContent = cat.name;
+            li.className = "list-group-item list-group-item-action";
+            li.innerHTML = `<i class="bi bi-tag me-2"></i> ${cat.name}`;
             
-            // Sự kiện khi click vào từng danh mục
             li.onclick = () => {
-                console.log("Chọn danh mục:", cat.id);
-                
-                // Đóng bảng bên phải
-                const offcanvasEl = document.getElementById('sidebarCategories');
-                const instance = bootstrap.Offcanvas.getInstance(offcanvasEl);
-                instance.hide();
-
-                // Gọi hàm lọc sản phẩm của bạn
-                if (typeof filterProductsByCategory === "function") {
-                    filterProductsByCategory(cat.id);
-                }
+                console.log("Đã chọn danh mục ID:", cat.id);
+                filterByCategory(cat.id);
+                closeSidebar();
             };
 
             container.appendChild(li);
         });
+
     } catch (error) {
+        console.error("Lỗi:", error);
         container.innerHTML = `<li class="list-group-item text-danger">Lỗi kết nối server</li>`;
     }
 }
 
+// Hàm đóng bảng trượt sau khi chọn
+function closeSidebar() {
+    const offcanvasElement = document.getElementById('sidebarCategories');
+    const instance = bootstrap.Offcanvas.getInstance(offcanvasElement);
+    if (instance) instance.hide();
+}
+
+// Hàm lọc sản phẩm (Bạn cần kết nối với logic hiển thị sản phẩm của mình)
+function filterByCategory(categoryId) {
+    // Giả sử bạn có hàm loadLinks(categoryId) để tải sản phẩm theo danh mục
+    // Nếu categoryId = null nghĩa là hiện tất cả
+    console.log("Thực hiện lọc cho Category ID:", categoryId);
+    
+    // Ví dụ: renderLinks(allLinks.filter(l => categoryId === null || l.categoryId === categoryId));
+}
+
+// Chạy khi trang web tải xong
 document.addEventListener("DOMContentLoaded", loadCategoriesSidebar);

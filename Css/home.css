@@ -239,34 +239,39 @@ section h4 {
   color: #777;
 }
 
+
+
+.collapse {
+  position: relative;
+}
+
 /* ==============================
    SIDEBAR CATEGORIES
 /*=============================== */
-/* Làm cho con trỏ biến thành hình bàn tay khi rà vào "Danh mục" */
-.menu-link {
-    cursor: pointer;
-    font-weight: 500;
-}
-
-/* Tùy chỉnh bảng trượt */
+/* Tùy chỉnh độ rộng bảng trượt */
 #sidebarCategories {
-    width: 300px; /* Độ rộng vừa phải cho mobile và desktop */
+    width: 320px;
 }
 
-/* Hiệu ứng cho các item danh mục bên trong bảng */
+/* Hiệu ứng di chuột vào danh mục */
 #categoryListBody .list-group-item {
     cursor: pointer;
-    border: none;
-    padding: 1rem 1.5rem;
+    border-left: 4px solid transparent;
     transition: all 0.2s ease;
 }
 
 #categoryListBody .list-group-item:hover {
-    background-color: #f8f9fa;
-    color: #ee4d2d; /* Màu cam Shopee */
-    padding-left: 2rem;
+    background-color: #fff5f2; /* Màu nền nhạt */
+    color: #ee4d2d;            /* Màu cam Shopee */
+    border-left: 4px solid #ee4d2d;
+    padding-left: 25px;        /* Đẩy chữ sang phải một chút */
 }
 
+/* Header của bảng */
+.offcanvas-title {
+    font-weight: bold;
+    color: #333;
+}
 
 
 /* ==============================
