@@ -134,37 +134,39 @@ document.addEventListener("DOMContentLoaded", loadLinks);
 
 // =============================================
 // off canvas
-async function loadCategories() {
-  const categoryMenu = document.getElementById("categoryMenu");
-  try {
-    const response = await fetch(`${API_BASE}/api/categories`); // Đảm bảo đúng endpoint của bạn
-    const categories = await response.json();
-
-    categoryMenu.innerHTML = ""; // Xóa chữ "Đang tải..."
-
-    categories.forEach(cat => {
-      const li = document.createElement("li");
-      li.className = "list-group-item";
-      li.textContent = cat.name;
-      
-      // Thêm sự kiện lọc nếu bạn muốn
-      li.onclick = () => {
-        console.log("Lọc theo danh mục:", cat.id);
-        // Sau khi bấm xong có thể tự đóng menu:
-        const instance = bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasCategory'));
-        instance.hide();
+async function loadCategoriesSidebar() {
+    const container = document.getElementById("categoryListBody");
+    try {
+        const response = await fetch(`${API_BASE}/api/categories`);
+        const categories = await response.json();
         
-        // Gọi hàm lọc sản phẩm của bạn ở đây...
-        filterByCategory(cat.id); 
-      };
+        container.innerHTML = ""; // Xóa dòng "Đang tải"
 
-      categoryMenu.appendChild(li);
-    });
-  } catch (error) {
-    console.error("Lỗi tải danh mục:", error);
-    categoryMenu.innerHTML = `<li class="list-group-item text-danger">Lỗi tải dữ liệu</li>`;
-  }
+        categories.forEach(cat => {
+            const li = document.createElement("li");
+            li.className = "list-group-item";
+            li.textContent = cat.name;
+            
+            // Sự kiện khi click vào từng danh mục
+            li.onclick = () => {
+                console.log("Chọn danh mục:", cat.id);
+                
+                // Đóng bảng bên phải
+                const offcanvasEl = document.getElementById('sidebarCategories');
+                const instance = bootstrap.Offcanvas.getInstance(offcanvasEl);
+                instance.hide();
+
+                // Gọi hàm lọc sản phẩm của bạn
+                if (typeof filterProductsByCategory === "function") {
+                    filterProductsByCategory(cat.id);
+                }
+            };
+
+            container.appendChild(li);
+        });
+    } catch (error) {
+        container.innerHTML = `<li class="list-group-item text-danger">Lỗi kết nối server</li>`;
+    }
 }
 
-// Gọi hàm này khi trang web tải xong
-document.addEventListener("DOMContentLoaded", loadCategories);
+document.addEventListener("DOMContentLoaded", loadCategoriesSidebar);

@@ -239,23 +239,32 @@ section h4 {
   color: #777;
 }
 
-
-/* Tùy chỉnh độ rộng bảng nếu muốn (mặc định là 400px) */
-.offcanvas {
-    width: 300px !important;
-}
-
-/* Hiệu ứng hover cho các mục danh mục */
-#categoryMenu .list-group-item {
+/* ==============================
+   SIDEBAR CATEGORIES
+/*=============================== */
+/* Làm cho con trỏ biến thành hình bàn tay khi rà vào "Danh mục" */
+.menu-link {
     cursor: pointer;
-    transition: background 0.3s;
-    border-left: 3px solid transparent;
+    font-weight: 500;
 }
 
-#categoryMenu .list-group-item:hover {
+/* Tùy chỉnh bảng trượt */
+#sidebarCategories {
+    width: 300px; /* Độ rộng vừa phải cho mobile và desktop */
+}
+
+/* Hiệu ứng cho các item danh mục bên trong bảng */
+#categoryListBody .list-group-item {
+    cursor: pointer;
+    border: none;
+    padding: 1rem 1.5rem;
+    transition: all 0.2s ease;
+}
+
+#categoryListBody .list-group-item:hover {
     background-color: #f8f9fa;
-    border-left: 3px solid #ee4d2d; /* Màu cam Shopee */
-    color: #ee4d2d;
+    color: #ee4d2d; /* Màu cam Shopee */
+    padding-left: 2rem;
 }
 
 
