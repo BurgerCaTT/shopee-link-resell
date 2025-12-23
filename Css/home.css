@@ -69,9 +69,9 @@ body {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-image: url('../Pic/anhnen1.jpg'); /* Dùng chung 1 ảnh làm nền */
+    background-image: url('../Pic/anhnen2.jpg'); /* Dùng chung 1 ảnh làm nền */
     background-size: cover;
-    background-position: top;
+    background-position: bottom;
     filter: blur(10px); /* ĐỘ MỜ Ở ĐÂY */
     z-index: -1; /* Đẩy xuống dưới cùng */
     transform: scale(1.1); /* Phóng to nhẹ để không bị lộ viền trắng khi mờ */
@@ -321,6 +321,18 @@ section h4 {
     border-radius: 0;
 }
 
+/* ============================== */
+   FOOTER
+.footer-minimal {
+    margin-top: auto; 
+    background-color: #f8f9fa;
+    letter-spacing: 0.5px;
+}
+
+.footer-minimal span {
+    text-transform: uppercase; /* Làm tên Store viết hoa cho chuyên nghiệp */
+    font-size: 0.85rem;
+}
 
 /* ==============================
    RESPONSIVE - TABLET
