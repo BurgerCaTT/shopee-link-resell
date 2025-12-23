@@ -36,10 +36,6 @@ body {
 /* ==============================
    HERO
 ================================ */
-.hero-section {
-  padding: 90px 0;
-  background: #f8f8f8;
-}
 
 .hero-section h1 {
   font-size: 2.6rem;
@@ -51,6 +47,70 @@ body {
   color: var(--text-muted);
   max-width: 720px;
   margin: 12px auto 0;
+}
+
+.hero-section .container .fw-bold {
+  display: flex !important;
+
+}
+ /* KHUNG CHỨA HERO */
+.hero-section {
+    position: relative;
+    padding: 20px 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    min-height: 300px;
+}
+
+/* TẠO NỀN MỜ (BLUR) */
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('../Pic/anhnen1.jpg'); /* Dùng chung 1 ảnh làm nền */
+    background-size: cover;
+    background-position: top;
+    filter: blur(10px); /* ĐỘ MỜ Ở ĐÂY */
+    z-index: -1; /* Đẩy xuống dưới cùng */
+    transform: scale(1.1); /* Phóng to nhẹ để không bị lộ viền trắng khi mờ */
+}
+
+/* CĂN LOGO VÀ CHỮ NẰM CẠNH NHAU */
+.hero-content {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center;
+    gap: 20px; /* Khoảng cách giữa logo và chữ */
+    /* background: rgba(255, 255, 255, 0.2); Tạo lớp phủ sáng nhẹ cho dễ đọc chữ */
+    padding: 10px 68px;
+    border-radius: 50px;
+    /* backdrop-filter: blur(5px); Hiệu ứng kính mờ cho khung chứa */
+}
+
+/* LOGO RÕ NÉT */
+.hero-logo {
+    width: 80px;  /* Chỉnh kích thước logo */
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%; /* Làm logo tròn */
+    border: 3px solid white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.hero-content h1 {
+    margin: 0;
+    color: #ffffff; /* Hoặc trắng tùy bạn chọn */
+    font-size: 2.5rem;
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column; /* Điện thoại thì logo nằm trên chữ cho đỡ chật */
+        text-align: center;
+    }
 }
 
 /* ==============================
