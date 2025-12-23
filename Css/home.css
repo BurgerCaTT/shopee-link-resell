@@ -239,38 +239,26 @@ section h4 {
   color: #777;
 }
 
-
-
-.collapse {
-  position: relative;
+.collapse .navbar-nav{
+  gap : 20px;
 }
 
 /* ==============================
    SIDEBAR CATEGORIES
 /*=============================== */
-/* Tùy chỉnh độ rộng bảng trượt */
-#sidebarCategories {
-    width: 320px;
+/* Luôn hiển thị dọc cho danh sách trong bảng trượt */
+#categoryListBody {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0;
+    margin: 0;
 }
 
-/* Hiệu ứng di chuột vào danh mục */
 #categoryListBody .list-group-item {
-    cursor: pointer;
-    border-left: 4px solid transparent;
-    transition: all 0.2s ease;
-}
-
-#categoryListBody .list-group-item:hover {
-    background-color: #fff5f2; /* Màu nền nhạt */
-    color: #ee4d2d;            /* Màu cam Shopee */
-    border-left: 4px solid #ee4d2d;
-    padding-left: 25px;        /* Đẩy chữ sang phải một chút */
-}
-
-/* Header của bảng */
-.offcanvas-title {
-    font-weight: bold;
-    color: #333;
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+    border-radius: 0;
 }
 
 
